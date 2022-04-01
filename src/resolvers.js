@@ -15,9 +15,6 @@ const resolvers = {
       return dataSources.trackAPI.getModule(id);
     },
   },
-  Module: {
-    durationInSeconds: ({ length }) => length,
-  },  
   Mutation: {
     // increments a track's numberOfViews property
     incrementTrackViews: async (_, { id }, { dataSources }) => {
@@ -43,11 +40,16 @@ const resolvers = {
     author: ({ authorId }, _, { dataSources }) => {
       return dataSources.trackAPI.getAuthor(authorId);
     },
-    durationInSeconds: ({ length }) => length,
+    
     modules: ({ id }, _, { dataSources }) => {
       return dataSources.trackAPI.getTrackModules(id);
     },
+    
+    durationInSeconds: ({ length }) => length
   },
+  Module: {
+    durationInSeconds: ({ length }) => length
+  }   
 };
 
 module.exports = resolvers;
